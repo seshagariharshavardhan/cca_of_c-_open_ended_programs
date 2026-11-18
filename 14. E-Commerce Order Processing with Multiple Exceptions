@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+class InvalidPriceException {};
+class InvalidQuantityException {};
+class InsufficientStockException {};
+
+int main() {
+    float price;
+    int quantity, stock;
+
+    cout << "Enter Product Price: ";
+    cin >> price;
+
+    cout << "Enter Quantity: ";
+    cin >> quantity;
+
+    cout << "Enter Available Stock: ";
+    cin >> stock;
+
+    try {
+        if (price <= 0)
+            throw InvalidPriceException();
+
+        if (quantity <= 0)
+            throw InvalidQuantityException();
+
+        if (quantity > stock)
+            throw InsufficientStockException();
+
+        cout << "Order Confirmed" << endl;
+        cout << "Total Amount = " << price * quantity << endl;
+        cout << "Remaining Stock = " << stock - quantity;
+    }
+    catch (InvalidPriceException e) {
+        cout << "Exception: Invalid Product Price";
+    }
+    catch (InvalidQuantityException e) {
+        cout << "Exception: Invalid Quantity";
+    }
+    catch (InsufficientStockException e) {
+        cout << "Exception: Insufficient Stock";
+    }
+
+    return 0;
+}
