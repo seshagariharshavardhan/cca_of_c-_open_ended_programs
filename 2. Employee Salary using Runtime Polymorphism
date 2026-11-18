@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+
+class Employee {
+public:
+    virtual void calculateSalary() = 0;
+};
+
+class Manager : public Employee {
+public:
+    void calculateSalary() {
+        float basic, bonus;
+        cout << "Enter Basic Salary and Bonus: ";
+        cin >> basic >> bonus;
+        cout << "Total Salary = " << basic + bonus;
+    }
+};
+
+class Developer : public Employee {
+public:
+    void calculateSalary() {
+        float basic, bonus;
+        cout << "Enter Basic Salary and Bonus: ";
+        cin >> basic >> bonus;
+        cout << "Total Salary = " << basic + bonus;
+    }
+};
+
+int main() {
+    Employee *e;
+    Manager m;
+    Developer d;
+    int choice;
+
+    cout << "1. Manager\n2. Developer\n";
+    cout << "Enter choice: ";
+    cin >> choice;
+
+    if (choice == 1)
+        e = &m;
+    else
+        e = &d;
+
+    e->calculateSalary();
+
+    return 0;
+}
