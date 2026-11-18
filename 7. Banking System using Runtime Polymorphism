@@ -1,0 +1,69 @@
+#include <iostream>
+using namespace std;
+
+class Account {
+public:
+    virtual void calculateInterest() = 0;
+};
+
+class SavingsAccount : public Account {
+public:
+    void calculateInterest() {
+        float balance, rate;
+        cout << "Enter Balance and Rate: ";
+        cin >> balance >> rate;
+
+        float interest = balance * rate / 100;
+
+        cout << "Interest = " << interest << endl;
+        cout << "Final Balance = " << balance + interest;
+    }
+};
+
+class CurrentAccount : public Account {
+public:
+    void calculateInterest() {
+        cout << "No Interest for Current Account";
+    }
+};
+
+class FixedDepositAccount : public Account {
+public:
+    void calculateInterest() {
+        float balance, rate;
+        cout << "Enter Balance and Rate: ";
+        cin >> balance >> rate;
+
+        float interest = balance * rate / 100;
+
+        cout << "Interest = " << interest << endl;
+        cout << "Final Balance = " << balance + interest;
+    }
+};
+
+int main() {
+    Account *a;
+    SavingsAccount s;
+    CurrentAccount c;
+    FixedDepositAccount f;
+    int choice;
+
+    cout << "1. Savings\n2. Current\n3. Fixed Deposit\n";
+    cout << "Enter choice: ";
+    cin >> choice;
+
+    if (choice == 1)
+        a = &s;
+    else if (choice == 2)
+        a = &c;
+    else if (choice == 3)
+        a = &f;
+    else {
+        cout << "Invalid choice";
+        return 0;
+    }
+
+    a->calculateInterest();
+
+    return 0;
+}
