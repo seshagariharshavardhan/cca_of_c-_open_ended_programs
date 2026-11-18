@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+class Payment {
+public:
+    virtual void makePayment() = 0;
+};
+
+class CreditCard : public Payment {
+public:
+    void makePayment() {
+        cout << "Enter Amount: ";
+        float amount;
+        cin >> amount;
+        cout << "Payment Mode: Credit Card\n";
+        cout << "Amount Paid = " << amount << endl;
+        cout << "Payment Successful";
+    }
+};
+
+class UPI : public Payment {
+public:
+    void makePayment() {
+        cout << "Enter Amount: ";
+        float amount;
+        cin >> amount;
+        cout << "Payment Mode: UPI\n";
+        cout << "Amount Paid = " << amount << endl;
+        cout << "Payment Successful";
+    }
+};
+
+class Cash : public Payment {
+public:
+    void makePayment() {
+        cout << "Enter Amount: ";
+        float amount;
+        cin >> amount;
+        cout << "Payment Mode: Cash\n";
+        cout << "Amount Paid = " << amount << endl;
+        cout << "Payment Successful";
+    }
+};
+
+int main() {
+    Payment *p;
+    CreditCard c;
+    UPI u;
+    Cash ca;
+    int choice;
+
+    cout << "1. Credit Card\n2. UPI\n3. Cash\n";
+    cout << "Enter choice: ";
+    cin >> choice;
+
+    if (choice == 1)
+        p = &c;
+    else if (choice == 2)
+        p = &u;
+    else if (choice == 3)
+        p = &ca;
+    else {
+        cout << "Invalid choice";
+        return 0;
+    }
+
+    p->makePayment();
+
+    return 0;
+}
