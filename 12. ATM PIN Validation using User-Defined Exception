@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+class IncorrectPINException {
+};
+
+int main() {
+    int correctPIN, pin;
+    int attempts = 3;
+
+    cout << "Set Correct PIN: ";
+    cin >> correctPIN;
+
+    while (attempts > 0) {
+        cout << "Enter ATM PIN: ";
+        cin >> pin;
+
+        try {
+            if (pin != correctPIN)
+                throw IncorrectPINException();
+
+            cout << "Login Successful";
+            return 0;
+        }
+        catch (IncorrectPINException e) {
+            attempts--;
+
+            cout << "Exception: Incorrect PIN." << endl;
+            cout << "Attempts Remaining: " << attempts << endl;
+        }
+    }
+
+    cout << "ATM Card Blocked";
+
+    return 0;
+}
