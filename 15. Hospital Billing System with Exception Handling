@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+class InvalidAgeException {};
+class InvalidAmountException {};
+
+int main() {
+    int age;
+    float consultation, lab, medicine;
+
+    cout << "Enter Patient Age: ";
+    cin >> age;
+
+    cout << "Enter Consultation Charges: ";
+    cin >> consultation;
+
+    cout << "Enter Lab Charges: ";
+    cin >> lab;
+
+    cout << "Enter Medicine Charges: ";
+    cin >> medicine;
+
+    try {
+        if (age <= 0)
+            throw InvalidAgeException();
+
+        if (consultation < 0 || lab < 0 || medicine < 0)
+            throw InvalidAmountException();
+
+        cout << "Total Hospital Bill = "
+             << consultation + lab + medicine << endl;
+
+        cout << "Bill Generated Successfully";
+    }
+    catch (InvalidAgeException e) {
+        cout << "Exception: Invalid Patient Age";
+    }
+    catch (InvalidAmountException e) {
+        cout << "Exception: Negative Billing Amount";
+    }
+
+    return 0;
+}
