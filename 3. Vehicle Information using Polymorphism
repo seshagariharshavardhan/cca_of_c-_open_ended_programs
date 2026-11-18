@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+class Vehicle {
+public:
+    virtual void displayDetails() = 0;
+};
+
+class Car : public Vehicle {
+public:
+    void displayDetails() {
+        string brand, model;
+        cout << "Enter Brand and Model: ";
+        cin >> brand >> model;
+        cout << "Vehicle: Car\n";
+        cout << "Brand: " << brand << endl;
+        cout << "Model: " << model;
+    }
+};
+
+class Bike : public Vehicle {
+public:
+    void displayDetails() {
+        string brand, model;
+        cout << "Enter Brand and Model: ";
+        cin >> brand >> model;
+        cout << "Vehicle: Bike\n";
+        cout << "Brand: " << brand << endl;
+        cout << "Model: " << model;
+    }
+};
+
+class Bus : public Vehicle {
+public:
+    void displayDetails() {
+        string brand, model;
+        cout << "Enter Brand and Model: ";
+        cin >> brand >> model;
+        cout << "Vehicle: Bus\n";
+        cout << "Brand: " << brand << endl;
+        cout << "Model: " << model;
+    }
+};
+
+int main() {
+    Vehicle *v;
+    Car c;
+    Bike b;
+    Bus bus;
+    int choice;
+
+    cout << "1. Car\n2. Bike\n3. Bus\n";
+    cout << "Enter choice: ";
+    cin >> choice;
+
+    if (choice == 1)
+        v = &c;
+    else if (choice == 2)
+        v = &b;
+    else
+        v = &bus;
+
+    v->displayDetails();
+
+    return 0;
+}
