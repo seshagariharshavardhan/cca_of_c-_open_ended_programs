@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int a[100], n, index;
+
+    cout << "Enter array size: ";
+    cin >> n;
+
+    if (n <= 0 || n > 100) {
+        cout << "Invalid array size";
+        return 0;
+    }
+
+    cout << "Enter elements: ";
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+
+    cout << "Enter index: ";
+    cin >> index;
+
+    try {
+        if (index < 0 || index >= n)
+            throw index;
+
+        cout << "Element = " << a[index];
+    }
+    catch (int x) {
+        cout << "Exception: Array index out of bounds.";
+    }
+
+    return 0;
+}
